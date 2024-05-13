@@ -1,0 +1,35 @@
+
+<div [ngClass]="{ shake: shakeIt, 'dialog-class': true }">
+
+
+  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-30rem md:w-6">
+    <div class="text-center mb-5">
+        <div class="text-900 text-3xl font-medium mb-3">Seus dados</div>
+    </div>
+
+  <div>
+    <span #cli class="p-float-label p-input-icon-right w-full mt-3">
+      <input pInputText pAutoFocus [autofocus]="true" [(ngModel)]="userLogin.documento" required mask="000.000.000-00" (keydown.enter)="postData()" id="username" class="block w-full "  />
+      <label class="block " for="username">Digite seu alvará</label>
+      @if (documentoForm.length>0) {
+        <i class="pi pi-times" (click)="documentoForm = ''"></i>
+      }
+    </span>
+    <span class="p-float-label p-input-icon-right w-full mt-3">
+      <input pInputText  [(ngModel)]="userLogin.senha" [autocomplete]="false" required (keydown.enter)="postData()" [type]="passwordType ?  'password' : 'text'" id="senha" class="block w-full "  />
+      <label class="block " for="senha">Digite sua senha</label>
+      <i [class]="passwordType?'pi pi-eye':'pi pi-eye-slash'" (click)="passwordType=!passwordType">
+      </i>
+    </span>
+
+
+    <button pButton [disabled]="userLogin.documento.length!=11 || userLogin.senha.length<6" pRipple (click)="postData()" label="Entrar" icon="pi pi-user" class="w-full mb-3 mt-4"></button>
+    <div class="flex align-items-center justify-content-between  mb-2">
+
+      <a  routerLink="['/reset-senha']"
+      (click)="esqueceuSenha()" class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Esqueceu sua senha?</a>
+    </div>
+  </div>
+</div>
+
+</div>

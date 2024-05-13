@@ -1,0 +1,1 @@
+export const segredo= "Os animais estão dominando o pedaço"

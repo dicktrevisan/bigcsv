@@ -1,0 +1,13 @@
+<p-fileUpload
+
+    (onSelect)="checkFile($event)"
+    (onUpload)="onUpload($event)"
+    [multiple]="false"
+    method="post"
+
+    >
+        <ng-template pTemplate="content">
+            Arquivos para a competência {{competencia}} carregados.
+        </ng-template>
+</p-fileUpload>
+<button (click)="onUpload('$event')">cirki</button>

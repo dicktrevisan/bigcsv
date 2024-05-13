@@ -1,0 +1,27 @@
+<div class="card">
+  <p-menubar [model]="menubarItems">
+    <ng-template pTemplate="start">
+      <img
+src="assets/Logo-Toledo.png"        height="40"
+        class=""
+      />
+    </ng-template>
+
+    <ng-template pTemplate="end">
+
+
+      <p-button
+        [raised]="true"
+        (click)="logout()"
+        routerLink="/login"
+        [severity]="sharedService.userSignal().documento.length== 11 ? 'warning' : 'help'"
+        >{{ sharedService.userSignal().documento.length== 11 ? "Logout" : "Login" }}
+      </p-button>
+    </ng-template>
+  </p-menubar>
+</div>
+<div class="flex justify-content-center">
+
+  <router-outlet></router-outlet>
+</div>
+

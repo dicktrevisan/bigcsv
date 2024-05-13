@@ -37,6 +37,10 @@ bower_components
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
+chegada
+json
+csv
+logs
 
 # Dependency directories
 node_modules/
