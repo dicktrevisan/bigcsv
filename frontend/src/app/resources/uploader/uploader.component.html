@@ -11,3 +11,10 @@
         </ng-template>
 </p-fileUpload>
 <button (click)="onUpload('$event')">cirki</button>
+ <ol>
+  @for (item of competencias; track $index) {
+    <li>
+      {{item.competencia}}
+    </li>
+  }
+ </ol>

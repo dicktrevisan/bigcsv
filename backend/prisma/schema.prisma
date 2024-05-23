@@ -30,19 +30,21 @@ model Dimp {
   valorOperacao          Float
   meioPagamento          String
   codTrans               String
+  arquivoReferencia               String? 
 }
 
 model User {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   nome      String
-  documento String @unique()
+  documento String   @unique()
   senha     String
-  email String?
+  email     String?
+
 }
 
 model Competencia {
-    id        String @id @default(auto()) @map("_id") @db.ObjectId
-    recebida Boolean @default(false)
-    competencia String @unique()
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  recebida    Boolean  @default(false)
+  competencia String   @unique()
 
 }

@@ -3,7 +3,7 @@ import * as path from 'path';
 
 const multerConfig = {
   storage: diskStorage({
-    destination: './chegada',
+    destination: '../../arquivos/chegada',
     filename: (id, file, cb) => {
       const fileName ="file";
 

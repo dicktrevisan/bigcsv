@@ -22,7 +22,7 @@ export class AlimentadorController {
       const atual = await this.alimentadorService.getOneCompetencia(competencia)
       if (!atual.recebida){
 
-        const dados = await this.alimentadorService.convertFiles(join(process.cwd(), 'chegada/file.csv'), 100000, competencia)
+        const dados = await this.alimentadorService.convertFiles(join(process.cwd(), '../../arquivos/chegada/file.csv'), 100000, competencia)
         return ({
           dados,
           competencia: await this.alimentadorService.updateCompetencia(competencia)
@@ -40,18 +40,37 @@ async deleteCompetência(@Body() data:any){
    return await this.alimentadorService.removeData()
   }  
 }
+
+
+@Get('rola')
+gerar(){
+  this.alimentadorService.gerarCompetencias(2020,2024)
+}
 @UseGuards(JwtAuthGuard)
 @Delete('/delete/:competencia')
 async deleteEmCasoDeReset(@Param('competencia') competencia:string){
   await this.alimentadorService.removeData()
   return ("The data was deleted")
 }
-@Get('/busca/:cnpj')
- async gettudo(@Param('cnpj') cnpj:string){
-   return await this.alimentadorService.gerarCompetencias(2020, 2024)
+@Get('/busca/resumido/:ano/:cnpj')
+ async gettudo(@Param('cnpj') cnpj:string, @Param('ano')ano:string){
+   return await this.alimentadorService.encontrar(cnpj, ano)
+  }
+@Get('/busca/cheio/:ano/:cnpj')
+ async big(@Param('cnpj') cnpj:string, @Param('ano')ano:string){
+   return await this.alimentadorService.findBig(cnpj, ano)
+  }
+@Get('/maior')
+ async maiores(){
+   //return await this.alimentadorService.findBig()
   }
 @Get('/lista')
 async getCompetencias(){
-  return await this.alimentadorService.getCompetencias()
+    return await this.alimentadorService.getCompetencias()
+}
+@Get('sobetudo')
+async sobeTudo(){
+  this.alimentadorService.convertLocal()
+
 }
 }

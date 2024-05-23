@@ -15,4 +15,5 @@ export interface AlimentadorInterface {
     valorOperacao: number;
     meioPagamento: string;
     codTrans:string
+    arquivoReferencia? :string
 }

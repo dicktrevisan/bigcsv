@@ -76,4 +76,13 @@ export class FormatarService {
         "CD_TRANS"
       ];
       includeColumns= new RegExp(`^(${this.colunasDesejadas.join('|')})$`)
+
+      checknull(dado:string|undefined){
+        if(!dado||dado==undefined){
+          return 'DADO NAO INFORMADO'
+        }
+        else{
+          return dado
+        } 
+      }
 }

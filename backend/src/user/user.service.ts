@@ -78,9 +78,33 @@ export class UserService {
   }
   async login(user: Prisma.UserCreateInput) {
     const payload = { nome: user.nome, documento: user.documento, id:user.id };
+    await this.checkCompetencia()
     return {
       token: this.jwtService.sign(payload),
       nome: user.nome, documento: user.documento, id:user.id,email:user.email, 
     };
+  }
+
+  async checkCompetencia(){
+    const mesAtual = (new Date().getMonth()+1).toString().padStart(2, '0')
+    const anoAtual = (new Date().getFullYear())
+    const competenciaAtual = (`${mesAtual}-${anoAtual}`)
+    console.log(competenciaAtual)
+    const existCompetencia  = await this.prisma.competencia.findUnique({
+      where:{
+        competencia:competenciaAtual
+      }
+    })
+    console.log(existCompetencia)
+    if(!existCompetencia){
+      console.log("CRiouuuuuu")
+     return await this.prisma.competencia.create({
+        data:{
+          competencia:competenciaAtual
+        }
+      })
+
+    }else{ console.log('não criou')}
+    
   }
 }

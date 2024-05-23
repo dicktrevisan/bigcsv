@@ -19,7 +19,7 @@ const primeModules = [FileUploadModule];
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [...primeModules, CommonModule, RouterOutlet, HeaderComponent],
+  imports: [ CommonModule, RouterOutlet, HeaderComponent],
   providers: [MessageService, LoginService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
