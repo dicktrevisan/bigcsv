@@ -16,4 +16,5 @@ export interface AlimentadorInterface {
     meioPagamento: string;
     codTrans:string
     arquivoReferencia? :string
+    ano: string
 }

@@ -1,0 +1,131 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+    output   = "../../node_modules/@prisma/@prisma-double/client"
+
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DOUBLE_URL")
+}
+
+model Dimp2020 {
+  id                     String  @id @default(auto()) @map("_id") @db.ObjectId
+  cnpjDeclarante         String
+  nomeDeclarante         String
+  competenciaDeclaracao  String
+  cnpjCpfCliente         String
+  nomeFantasiaCliente    String
+  codigoMunicipioCliente String
+  nomeResponsavelCliente String?
+  cnpjAdquirente         String?
+  dataOperacao           String
+  operacaoSplit          String
+  bandeiraCartao         String?
+  horaTransacao          String
+  valorOperacao          Float
+  meioPagamento          String
+  codTrans               String
+  arquivoReferencia      String?
+ ano String
+}
+model Dimp2021 {
+  id                     String  @id @default(auto()) @map("_id") @db.ObjectId
+  cnpjDeclarante         String
+  nomeDeclarante         String
+  competenciaDeclaracao  String
+  cnpjCpfCliente         String
+  nomeFantasiaCliente    String
+  codigoMunicipioCliente String
+  nomeResponsavelCliente String?
+  cnpjAdquirente         String?
+  dataOperacao           String
+  operacaoSplit          String
+  bandeiraCartao         String?
+  horaTransacao          String
+  valorOperacao          Float
+  meioPagamento          String
+  codTrans               String
+  arquivoReferencia      String?
+ ano String
+}
+model Dimp2022 {
+  id                     String  @id @default(auto()) @map("_id") @db.ObjectId
+  cnpjDeclarante         String
+  nomeDeclarante         String
+  competenciaDeclaracao  String
+  cnpjCpfCliente         String
+  nomeFantasiaCliente    String
+  codigoMunicipioCliente String
+  nomeResponsavelCliente String?
+  cnpjAdquirente         String?
+  dataOperacao           String
+  operacaoSplit          String
+  bandeiraCartao         String?
+  horaTransacao          String
+  valorOperacao          Float
+  meioPagamento          String
+  codTrans               String
+  arquivoReferencia      String?
+ ano String
+}
+model Dimp2023 {
+  id                     String  @id @default(auto()) @map("_id") @db.ObjectId
+  cnpjDeclarante         String
+  nomeDeclarante         String
+  competenciaDeclaracao  String
+  cnpjCpfCliente         String
+  nomeFantasiaCliente    String
+  codigoMunicipioCliente String
+  nomeResponsavelCliente String?
+  cnpjAdquirente         String?
+  dataOperacao           String
+  operacaoSplit          String
+  bandeiraCartao         String?
+  horaTransacao          String
+  valorOperacao          Float
+  meioPagamento          String
+  codTrans               String
+  arquivoReferencia      String?
+ ano String
+}
+model Dimp2024 {
+  id                     String  @id @default(auto()) @map("_id") @db.ObjectId
+  cnpjDeclarante         String
+  nomeDeclarante         String
+  competenciaDeclaracao  String
+  cnpjCpfCliente         String
+  nomeFantasiaCliente    String
+  codigoMunicipioCliente String
+  nomeResponsavelCliente String?
+  cnpjAdquirente         String?
+  dataOperacao           String
+  operacaoSplit          String
+  bandeiraCartao         String?
+  horaTransacao          String
+  valorOperacao          Float
+  meioPagamento          String
+  codTrans               String
+  arquivoReferencia      String?
+ ano String
+}
+
+model User {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  nome      String
+  documento String  @unique()
+  senha     String
+  email     String?
+}
+
+model Competencia {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  recebida    Boolean @default(false)
+  competencia String  @unique()
+}

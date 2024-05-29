@@ -14,15 +14,16 @@ export class AlimentadorController {
     await this.alimentadorService
   }
 @UseGuards(JwtAuthGuard)
-@Post('/:competencia')
+@Post('/:mes/:ano')
   @UseInterceptors(FileInterceptor('file', multerConfig))
-  async  uploadFile(@UploadedFile() file: Express.Multer.File, @Param('competencia') competencia:string) {
+  async  uploadFile(@UploadedFile() file: Express.Multer.File, @Param('ano') ano:string, @Param('mes') mes:string) {
+    const competencia = mes+'-'+ano
     console.log(competencia)
     if(competencia[2]=='-'&&competencia.length==7){
       const atual = await this.alimentadorService.getOneCompetencia(competencia)
       if (!atual.recebida){
 
-        const dados = await this.alimentadorService.convertFiles(join(process.cwd(), '../../arquivos/chegada/file.csv'), 100000, competencia)
+        const dados = await this.alimentadorService.convertFiles(join(process.cwd(), '../../arquivos/chegada/file.csv'), 10000, competencia, ano)
         return ({
           dados,
           competencia: await this.alimentadorService.updateCompetencia(competencia)
@@ -32,25 +33,17 @@ export class AlimentadorController {
     }
     return new BadRequestException("BURRO")
   }
-@UseGuards(JwtAuthGuard)
-@Delete('notenteissoaqui')
-async deleteCompetência(@Body() data:any){
-  
-  if(data){
-   return await this.alimentadorService.removeData()
-  }  
+
+
+
+@Get('cria-ano/:ano')
+async criaAno(@Param('ano') ano:string){
+  console.log('batey')
+  return await this.alimentadorService.createAno(ano)
 }
-
-
 @Get('rola')
 gerar(){
   this.alimentadorService.gerarCompetencias(2020,2024)
-}
-@UseGuards(JwtAuthGuard)
-@Delete('/delete/:competencia')
-async deleteEmCasoDeReset(@Param('competencia') competencia:string){
-  await this.alimentadorService.removeData()
-  return ("The data was deleted")
 }
 @Get('/busca/resumido/:ano/:cnpj')
  async gettudo(@Param('cnpj') cnpj:string, @Param('ano')ano:string){
@@ -60,9 +53,9 @@ async deleteEmCasoDeReset(@Param('competencia') competencia:string){
  async big(@Param('cnpj') cnpj:string, @Param('ano')ano:string){
    return await this.alimentadorService.findBig(cnpj, ano)
   }
-@Get('/maior')
+@Get('/maior') 
  async maiores(){
-   //return await this.alimentadorService.findBig()
+   return await this.alimentadorService.find100()
   }
 @Get('/lista')
 async getCompetencias(){
@@ -72,5 +65,13 @@ async getCompetencias(){
 async sobeTudo(){
   this.alimentadorService.convertLocal()
 
+}
+@Get('/busca/anual/:ano/:cnpj/:competencia')
+ async anual( @Param('ano')ano:string, @Param('cnpj') cnpj:string,@Param('competencia')competencia:string){
+   return await this.alimentadorService.findAnual(ano, cnpj, competencia)
+  }
+@Get("agrupar")
+async agrupar(){
+  await this.alimentadorService.agrupar()
 }
 }

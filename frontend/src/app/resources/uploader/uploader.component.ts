@@ -20,6 +20,8 @@ const primeModules = [FileUploadModule];
 })
 export class UploaderComponent implements OnInit {
   competencia: string = '';
+  mes: string = '';
+  ano: string = '';
   formData: FormData = new FormData();
   constructor(private messageService: MessageService, private uploaderService:UploaderService
   ) {}
@@ -34,16 +36,15 @@ ngOnInit(): void {
   checkFile(event: FileSelectEvent) {
     const fileName = event.currentFiles[0].name;
     if (fileName.startsWith('DIMP_PORTAL_')) {
-      const mes = fileName.slice(-6, -4);
-      const ano = fileName.slice(-10, -6);
-      this.competencia = `${mes}-${ano}`;
+      this.mes = fileName.slice(-6, -4);
+      this.ano = fileName.slice(-10, -6);
       this.formData.append('file', event.currentFiles[0], fileName);
 
     }
   }
   onUpload(event: UploadEvent|any) {
     console.log("chapolim", event)
-    this.uploaderService.enviarDimp(this.formData, this.competencia).subscribe(result=>console.log(result))
+    this.uploaderService.enviarDimp(this.formData, this.mes,this.ano).subscribe(result=>console.log(result))
     this.messageService.add({
       severity: 'info',
       summary: 'File Uploaded',

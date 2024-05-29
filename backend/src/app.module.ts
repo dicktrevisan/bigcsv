@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HttpModule } from '@nestjs/axios';
 import { FormatarService } from './shared/services/formatar/formatar.service';
-import { PrismaService } from './prisma.service';
+import { PrismaDoubleService, PrismaService } from './prisma.service';
 import { UserModule } from './user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AlimentadorService } from './alimentador/alimentador.service';
@@ -26,6 +26,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
   }),
 ],
   controllers: [AppController],
-  providers: [AppService, Logger, FormatarService, PrismaService, AlimentadorService],
+  providers: [AppService, Logger, FormatarService, PrismaService, AlimentadorService, PrismaDoubleService],
 })
 export class AppModule {}

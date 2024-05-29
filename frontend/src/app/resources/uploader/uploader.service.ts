@@ -9,8 +9,8 @@ import { Competencia } from './competencia.interface';
 export class UploaderService {
   http = inject(HttpClient)
 
-  enviarDimp(data:FormData, competencia:string){
-    return this.http.post<File>(`http://localhost:3000/alimentador/${competencia}`, data, { headers: {
+  enviarDimp(data:FormData, mes:string, ano:string){
+    return this.http.post<File>(`http://localhost:3000/alimentador/${mes}/${ano}`, data, { headers: {
       authorization: `Bearer ${localStorage.getItem('token')}`,
     },})
 
